@@ -19,9 +19,15 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
-      footballId: {
+      ProductId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'Products',
+          key: 'id'
+        },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       createdAt: {
         allowNull: false,

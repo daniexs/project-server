@@ -1,5 +1,5 @@
 const { verifyPassword } = require('../helpers/bcrypt')
-const { generateToken } = require('../helpers/jwt')
+const { signToken } = require('../helpers/jwt')
 const {User} = require('../models')
 
 class UserController {
@@ -24,7 +24,7 @@ class UserController {
                 throw {name: "Invalid email/password"}
             }
             const payload = {id: user.id, email: user.email}
-            const access_token = generateToken(payload)
+            const access_token = signToken(payload)
             res.status(200).json({access_token})
         } catch (error) {
             next(error)

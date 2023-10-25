@@ -3,16 +3,17 @@ const { default: axios } = require("axios")
 
 function handleMainRequest(req,res){
     // Create Snap API instance
+    const {total} = req.body
     let snap = new midtransClient.Snap({
             // Set to true if you want Production Environment (accept real transaction).
             isProduction : false,
-            serverKey : 'SB-Mid-server-u_Xr9queY4ceH4d-AiMsdwTN'
+            serverKey : process.env.MIT_TRAN
         });
     
     let parameter = {
         "transaction_details": {
             "order_id": new Date(),
-            "gross_amount": 10000
+            "gross_amount": total
         },
         "credit_card":{
             "secure" : true

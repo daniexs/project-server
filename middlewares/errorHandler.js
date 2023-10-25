@@ -10,7 +10,7 @@ function errorHandler(err,eq,res,next){
     }else if(err.name === "Invalid email/password"){
         status = 401
         message = err.name
-    }else if(err.name === "Hero not found"){
+    }else if(err.name === "not_found"){
         status = 404
         message = err.name
     }else if(err.name === "You are not authorized"){

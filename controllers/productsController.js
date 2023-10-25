@@ -1,9 +1,23 @@
 const {Product} = require('../models')
+const {Op} = require('sequelize')
 
 class ProductsController {
     static async getProducts(req,res,next){
         try {
-            const dataProducts = await Product.findAll()
+            const {filter, page, name} = req.query
+            let option = {}
+            let limit = 9
+            if(page){
+                option.limit = limit
+                option.offset = page*limit-limit
+            }
+            if(name){
+                option.where.name = {[Op.iLike] : `%${name}%`}
+            }
+            if(filter){
+                option = {where: {category: filter}}
+            }
+            const dataProducts = await Product.findAll(option)
             res.status(200).json(dataProducts)
         } catch (error) {
             next(error)

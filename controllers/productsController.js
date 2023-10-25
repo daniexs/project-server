@@ -1,4 +1,3 @@
-const { default: axios } = require("axios")
 const {Product} = require('../models')
 
 class ProductsController {
@@ -25,6 +24,7 @@ class ProductsController {
             const newProduct = await Product.create({name, price,stock, description,category, imgUrl, UserId})
             res.status(201).json(newProduct)
         } catch (error) {
+            console.log(error)
             next(error)
         }
     }

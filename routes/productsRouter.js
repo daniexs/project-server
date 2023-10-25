@@ -1,11 +1,13 @@
 const express = require('express')
 const ProductsController = require('../controllers/productsController')
+const authentication = require('../middlewares/authentication')
 const router = express.Router()
 
 router.get('/', ProductsController.getProducts)
-router.post('/', ProductsController.addProducts)
 router.get('/:id', ProductsController.getProductsDetail)
-router.put('/:id', ProductsController.editProducts)
+router.use(authentication)
+router.post('/add', ProductsController.addProducts)
+router.put('/edit/:id', ProductsController.editProducts)
 
 
 module.exports = router

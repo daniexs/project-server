@@ -12,13 +12,10 @@ Endpoin under authenthication Customer
 - `POST /upload/upload-multiple`
 - `GET /cart/get`
 - `POST /cart/add`
+- `DELETE /cart/:id`
 - `POST /products/add`
 - `POST /midtrans/`
 
-
-
-- `POST /google-login`
-- `PUT /products/:id`
 
 
 
@@ -88,26 +85,6 @@ _401 - Unauthorized_
     ```json
     {
         "message": "Invalid email/password"
-    }
-    ```
-
-### POST /cust/google-login
-#### Description
-- Cheked input user data (login)
-
-#### Request
-- Body
-    ```json
-    {
-        "google_token":"string"
-    }
-    ```
-#### Response
-_200 - OK_
-- Body
-    ```json
-    {
-      "token": "String" 
     }
     ```
 
@@ -354,5 +331,28 @@ _401 - Invalid Token_
     ```json
     {
         "message": "Invalid Token"
+    }
+    ```
+## GET /cart/:id
+#### Description
+- Get selected the products data by given id
+
+#### Request
+- params:
+```json
+    {
+      "Id": "integer"
+    }
+```
+
+#### Response
+_200 - OK_
+
+- Body
+    ```json
+    {
+        
+          {"message": "string"}
+      
     }
     ```

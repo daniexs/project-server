@@ -20,5 +20,14 @@ class BookmarkController{
             next(error)
         }
     }
+    static async deleteBookmark(req,res,next){
+        try {
+            const {id} = req.params
+            const response = await Bookmark.destroy({where: {id}})
+            res.status(200).json({message: `Succes delete cart id ${id}`})
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 module.exports = BookmarkController
